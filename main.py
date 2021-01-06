@@ -2,26 +2,22 @@ import base64
 import json
 
 class ImageCoding:
-    def __init__(self):
-        pass
+    def __init__(self, path):   # read file in path
+        with open(path,"rb") as img:
+            self.read_img = img.read()
 
-    def encodeImage(self, img_path):      # encrypt image
-        img_path = open(img_path, "rb")
-        img_read = img_path.read()
-        img_64_encode = base64.encodebytes(img_read)
+    def encodeImage(self):      # encrypt image
+        img_64_encode = base64.encodebytes(self.read_img)
         with open("encode_plate.txt", "wb") as enimg:
             enimg.write(img_64_encode)
         return img_64_encode
 
-    def decodeImage(self, code_path):      # decrypt image
-        with open(code_path, "rb") as deimg:
-            decode = deimg.read()
-        img_64_decode = base64.decodebytes(decode)
+    def decodeImage(self):      # decrypt image
+        img_64_decode = base64.decodebytes(self.read_img)
         with open("decode_plate.jpg", "wb") as deimg:
             deimg.write(img_64_decode)
 
 
 if __name__ == "__main__":
-    # r = ImageCoding().encodeImage(img_path="plaka.jpg")
-
-    ImageCoding().decodeImage(code_path="encode.txt")
+    ImageCoding(path="plaka.jpg").encodeImage()
+    # ImageCoding(path="encode_plate.txt").decodeImage()
