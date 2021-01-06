@@ -1,0 +1,35 @@
+{
+    "license_plate":  "06YIH62",
+    "previous_parks": [
+        {
+            "datetime":[
+                {
+                "date":"10.01.2021",
+                "time":"17:32:35"
+                }],
+            "cam_id":"34_02",
+            "cam_location": "",
+            "lp_encode":"&HPAEK&O+JHAO&RHOA&+OHEA&+A&&ASRD&HFDHA&FDHS/&RDS/(TSD^WHAEWAH^DFR/HD"
+        },
+        {
+            "datetime":[
+                {
+                "date":"09.01.2021",
+                "time":"13:01:12"
+                }],
+            "cam_id":"34_07",
+            "cam_location": "",
+            "lp_encode":"AEH&OA+J&KHAEK&Ô+HIA&+^JA&)H+JA&EWJA&HDJAO&DOHA/AJ='JA=H'J+=AJH'=+JA="
+        },
+        {
+            "datetime":[
+                {
+                "date":"05.01.2021",
+                "time":"09:59:29"
+                }],
+            "cam_id":"34_04",
+            "cam_location": "",
+            "lp_encode":"KOKUDKRP&+=^KESOHAJ%=/KS^+KPGKSROK^='U)SJDDT=Û=H=+&M(S=^%HMID=S^SHUMD"
+        }]
+
+}
