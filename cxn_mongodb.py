@@ -1,20 +1,18 @@
-from encode_decode import ImageCoding
+from den_code import ImageCoding
 import datetime
 from pymongo import MongoClient
 
+mDBConnectionKey = "mongodb+srv://ouz:vtld6giXyU3xuwjE@ops-cluster.oydxs.mongodb.net/LP-Encodes?retryWrites=true&w=majority"
+
 class mDB:
-    def __init__(self, license_plate, cam_id):
-        self.license_plate = license_plate
+    def __init__(self):
+        self.client = MongoClient(mDBConnectionKey)
+        # self.db = self.client[""]
+        # self.connection = self.db[""]
+        print(self.client.list_database_names())
+
+    def wLPencode(self):
+        ImageCoding(path="plaka.jpg").encodeImage() # img_encode
         
-        client = MongoClient("mongodb+srv://ouz:c4A1P24cw01EZpc7@lp-encode-cluster.oydxs.mongodb.net/Previous-Parking-Spots?retryWrites=true&w=majority")
-        db = client["Previous-Parking-Spots"]
-        collection = db["license_plates"]
-
-
-    def w_LP_Encode(self):
-        img_encode = ImageCoding("plaka.jpg").encodeImage()
-
-
-
 if __name__ == "__main__":
-    mDB("06YUH32", "34_01")
+    mDB()

@@ -18,5 +18,5 @@ class ImageCoding:
 
 
 # if __name__ == "__main__":
-    # ImageCoding(path="plaka.jpg").encodeImage()
+#     ImageCoding(path="plaka.jpg").encodeImage()
     # # ImageCoding(path="encode_plate.txt").decodeImage()
