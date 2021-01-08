@@ -12,15 +12,6 @@ class mDB:
 
     def w_LP_encode(self, license_plate, device_id):
         img_encode = ImageCoding(path="plaka.jpg").encodeImage()
-        
-        data = {
-                "license_plate":license_plate,
-                "previous_parks": [{
-                    "datetime":datetime.datetime.now(),
-                    "device_id":device_id,
-                    "device_location": "None",
-                    "lp_encode": img_encode
-                    }]}
 
         filter = {"license_plate": license_plate}
         # Burada plaka sorgula eğer veritabanında önceden kayıtlıysa oradaki previous_parks kısmına yeni parkın resmini kaydedecek.
@@ -37,6 +28,14 @@ class mDB:
                     }
                 }})
         else:   # Eğer plaka veritabanında kayıtlı değilse aşağıdaki işlemler uygulanacak:
+            data = {
+                "license_plate":license_plate,
+                "previous_parks": [{
+                    "datetime":datetime.datetime.now(),
+                    "device_id":device_id,
+                    "device_location": "None",
+                    "lp_encode": img_encode
+                    }]}
             self.collection.insert_one(data)
 
 
