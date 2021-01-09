@@ -3,6 +3,9 @@ import datetime
 from pymongo import MongoClient
 import json
 
+from gridfs import GridFS
+
+
 mDBConnectionKey = "mongodb+srv://ouz:123qwe!'QW@ops-cluster.oydxs.mongodb.net/LP-Encodes?retryWrites=true&w=majority"
 
 class mDB:
@@ -12,7 +15,10 @@ class mDB:
         self.collection = db["license_plates"]
 
     def w_LP_encode(self, license_plate, device_id):
-        img_encode = ImageCoding(path="plaka.jpg").encodeImage()
+        lp_img = ImageCoding(path="plaka2.jpg").encodeImage()
+        # filename = "plaka.jpg"
+        # datafile = open(filename,"r")
+        # lp_img = datafile.read()
 
         # process for an existing plate
         if self.collection.find_one({"license_plate": license_plate}):
@@ -24,7 +30,7 @@ class mDB:
                     "datetime":datetime.datetime.now(),
                     "device_id":device_id,
                     "device_location": "None",
-                    "lp_encode": img_encode
+                    "lp_img": lp_img
                     }
                 }})
                 
@@ -35,7 +41,7 @@ class mDB:
                     "datetime":datetime.datetime.now(),
                     "device_id":device_id,
                     "device_location": "None",
-                    "lp_encode": img_encode
+                    "lp_img": lp_img
                     }]}
             self.collection.insert_one(data)
 
@@ -55,5 +61,5 @@ class mDB:
 
 
 if __name__ == "__main__":
-    # mDB().w_LP_encode(license_plate="11XYZ22", device_id="34_11")
-    mDB().r_LP_encode(license_plate="06YIH32")
+    mDB().w_LP_encode(license_plate="06YIH32", device_id="34_11")
+    # mDB().r_LP_encode(license_plate="06YIH32")

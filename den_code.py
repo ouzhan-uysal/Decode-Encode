@@ -6,8 +6,8 @@ class ImageCoding:
             self.read_img = img.read()
 
     def encodeImage(self):      # encrypt image
-        img_64_encode = base64.encodebytes(self.read_img)
-        # with open("encode_plate.txt", "wb") as enimg:
+        img_64_encode = base64.b64encode(self.read_img)
+        # with open("encode_plate2.txt", "wb") as enimg:
         #     enimg.write(img_64_encode)
         return img_64_encode
 
@@ -23,5 +23,5 @@ class ImageCoding:
 
 
 # if __name__ == "__main__":
-#     ImageCoding(path="plaka.jpg").encodeImage()
-    # # ImageCoding(path="encode_plate.txt").decodeImage()
+    # ImageCoding(path="plaka.jpg").encodeImage()
+    # ImageCoding(path="encode_plate.txt").decodeImage()
