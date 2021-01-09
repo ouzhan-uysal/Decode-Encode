@@ -11,10 +11,15 @@ class ImageCoding:
         #     enimg.write(img_64_encode)
         return img_64_encode
 
-    def decodeImage(self):      # decrypt image
-        img_64_decode = base64.decodebytes(self.read_img)
-        with open("decode_plate.jpg", "wb") as deimg:
-            deimg.write(img_64_decode)
+    def decodeImage(self, en_code):      # decrypt image
+        if en_code:
+            img_64_decode = base64.decodebytes(en_code)
+            with open("decode_plate.jpg", "wb") as deimg:
+                deimg.write(img_64_decode)
+        else:
+            img_64_decode = base64.decodebytes(self.read_img)
+            with open("decode_plate.jpg", "wb") as deimg:
+                deimg.write(img_64_decode)
 
 
 # if __name__ == "__main__":
