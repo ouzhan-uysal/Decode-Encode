@@ -7,9 +7,9 @@ mDBConnectionKey = "mongodb+srv://ouz:123qwe!'QW@ops-cluster.oydxs.mongodb.net/L
 
 class mDB:
     def __init__(self):
-        self.client = MongoClient(mDBConnectionKey)
-        self.db = self.client["LP-Encodes"]
-        self.collection = self.db["license_plates"]
+        client = MongoClient(mDBConnectionKey)
+        db = client["LP-Encodes"]
+        self.collection = db["license_plates"]
 
     def w_LP_encode(self, license_plate, device_id):
         img_encode = ImageCoding(path="plaka.jpg").encodeImage()
