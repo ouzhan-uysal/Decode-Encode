@@ -45,7 +45,7 @@ class mDB:
         if self.collection.find_one(filter):
             # en_code = self.collection.find_one(filter, {"previous_parks":{"$slice":-1}})      # Son girdiyi getirir.
             en_code = self.collection.find_one(filter, {"_id":0, "previous_parks":1})
-            # en_code = json.dumps(en_code, default=str)  # Eğer mongoDB'de date değişkeni çekilecekse gelen hata bu şekilde çözülüyor.
+            # en_code = json.dumps(en_code, default=str)  # mongoDB'den date, bytes türleri çekilecekse gelen hata bu şekilde çözülüyor.
             with open("deneme.json", "w") as dnm:
                 json.dump(en_code, dnm)
             # ImageCoding(license_plate).decodeImage(en_code=en_code)
