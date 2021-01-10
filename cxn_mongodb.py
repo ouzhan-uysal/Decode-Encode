@@ -5,18 +5,16 @@ import json
 
 from gridfs import GridFS
 
+# mDBConnectionKey = "mongodb+srv://ouz:123qwe!'QW@ops-cluster.oydxs.mongodb.net/LP-Encodes?retryWrites=true&w=majority"
 
 class mDB:
     def __init__(self):
-        client = MongoClient("mongodb://localhost:27017")
+        client = MongoClient("mongodb://localhost:27017")   # Parametre: mDBConnectionKey
         db = client["LP-Encodes"]
         self.collection = db["license_plates"]
 
     def w_LP_encode(self, license_plate, device_id):
         lp_img = ImageCoding(path="plaka2.jpg").encodeImage()
-        # filename = "plaka.jpg"
-        # datafile = open(filename,"r")
-        # lp_img = datafile.read()
 
         # process for an existing plate
         if self.collection.find_one({"license_plate": license_plate}):
