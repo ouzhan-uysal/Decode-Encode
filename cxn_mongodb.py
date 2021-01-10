@@ -6,11 +6,9 @@ import json
 from gridfs import GridFS
 
 
-mDBConnectionKey = "mongodb+srv://ouz:123qwe!'QW@ops-cluster.oydxs.mongodb.net/LP-Encodes?retryWrites=true&w=majority"
-
 class mDB:
     def __init__(self):
-        client = MongoClient(mDBConnectionKey)
+        client = MongoClient("mongodb://localhost:27017")
         db = client["LP-Encodes"]
         self.collection = db["license_plates"]
 
