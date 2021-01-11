@@ -1,15 +1,15 @@
 from den_code import ImageCoding
-import datetime
+import time
 from pymongo import MongoClient
 import json
 
 from gridfs import GridFS
 
-# mDBConnectionKey = "mongodb+srv://ouz:123qwe!'QW@ops-cluster.oydxs.mongodb.net/LP-Encodes?retryWrites=true&w=majority"
+mDBConnectionKey = "mongodb+srv://ouz:123qwe!'QW@ops-cluster.oydxs.mongodb.net/LP-Encodes?retryWrites=true&w=majority"
 
 class mDB:
     def __init__(self):
-        client = MongoClient("mongodb://localhost:27017")   # Parametre: mDBConnectionKey
+        client = MongoClient(mDBConnectionKey)
         db = client["LP-Encodes"]
         self.collection = db["license_plates"]
 
@@ -23,7 +23,7 @@ class mDB:
                 },
                 {"$push": {
                     "previous_parks": {
-                    "datetime":datetime.datetime.now(),
+                    "datetime":time.strftime('%Y.%m.%d-%H.%M.%S'),
                     "device_id":device_id,
                     "device_location": "None",
                     "lp_img": lp_img
@@ -34,7 +34,7 @@ class mDB:
             data = {
                 "license_plate":license_plate,
                 "previous_parks": [{
-                    "datetime":datetime.datetime.now(),
+                    "datetime":time.strftime('%Y.%m.%d-%H.%M.%S'),
                     "device_id":device_id,
                     "device_location": "None",
                     "lp_img": lp_img
@@ -46,9 +46,9 @@ class mDB:
         filter = {"license_plate": license_plate}
         if self.collection.find_one(filter):
             # en_code = self.collection.find_one(filter, {"previous_parks":{"$slice":-1}})      # Son girdiyi getirir.
-            en_code = self.collection.find_one(filter, {"_id":0, "previous_parks":1})
+            en_code = (self.collection.find_one(filter, {"_id":0, "datetime":1, "previous_parks":1}))
             # en_code = json.dumps(en_code, default=str)  # mongoDB'den date, bytes türleri çekilecekse gelen hata bu şekilde çözülüyor.
-            with open("deneme.json", "w") as dnm:
+            with open("encode_plate.json", "w") as dnm:
                 json.dump(en_code, dnm)
             # ImageCoding(license_plate).decodeImage(en_code=en_code)
 
@@ -56,6 +56,6 @@ class mDB:
             print("plaka sistemde kayıtlı değil")
 
 
-if __name__ == "__main__":
-    mDB().w_LP_encode(license_plate="06YIH32", device_id="34_11")
-    # mDB().r_LP_encode(license_plate="06YIH32")
+# if __name__ == "__main__":
+    # mDB().w_LP_encode(license_plate="80YIH32", device_id="34_11")
+    # mDB().r_LP_encode(license_plate="80YIH32")
