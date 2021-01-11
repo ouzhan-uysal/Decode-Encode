@@ -16,7 +16,6 @@ class mDB:
     def w_LP_encode(self, license_plate, device_id):
         lp_img = ImageCoding(path="plaka2.jpg").encodeImage()
         
-        print("burada")
         # process for an existing plate
         if self.collection.find_one({"license_plate": license_plate}):
             self.collection.update_one({
