@@ -15,7 +15,8 @@ class mDB:
 
     def w_LP_encode(self, license_plate, device_id):
         lp_img = ImageCoding(path="plaka2.jpg").encodeImage()
-
+        
+        print("burada")
         # process for an existing plate
         if self.collection.find_one({"license_plate": license_plate}):
             self.collection.update_one({
@@ -56,6 +57,6 @@ class mDB:
             print("plaka sistemde kayıtlı değil")
 
 
-# if __name__ == "__main__":
-    # mDB().w_LP_encode(license_plate="80YIH32", device_id="34_11")
+if __name__ == "__main__":
+    mDB().w_LP_encode(license_plate="80YIH32", device_id="34_16")
     # mDB().r_LP_encode(license_plate="80YIH32")
