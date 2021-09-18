@@ -5,7 +5,7 @@ import json
 
 from gridfs import GridFS
 
-mDBConnectionKey = "mongodb+srv://ouz:123qwe!'QW@ops-cluster.oydxs.mongodb.net/LP-Encodes?retryWrites=true&w=majority"
+mDBConnectionKey = "WRITE_KEY_HERE"
 
 class mDB:
     def __init__(self):
